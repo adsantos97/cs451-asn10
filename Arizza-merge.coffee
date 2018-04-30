@@ -81,7 +81,8 @@ printArray = (array) ->
 
 # purpose: run the program
 main = ->
-    array = [4, 2, 9, 6, 23, 12]
+    array = [4, 2, 9, 6, 23, 12] # test array
+    array = prompt("Enter list of integers:")
     console.log "Before sort:" 
     printArray(array)
     console.log "After sort:"
@@ -104,5 +105,8 @@ to using some while-loops because I did not want to use comprehensions.
 
 I got frustrated using this language. I knew I had the correct alogrithm for
 merge sort because we had done it in our past CS courses. I spent 1-2 hours
-trying to debug the code only to find out that there was an increment error.   
+trying to debug the code only to find out that there was an increment error. I
+also wanted to make the program fancy by getting user input for the array, but I
+found out that CoffeeScript does not allow such thing. So, I was pretty
+disappointed about that to say the least.   
 ###
