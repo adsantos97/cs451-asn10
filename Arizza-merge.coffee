@@ -81,7 +81,8 @@ printArray = (array) ->
 
 # purpose: run the program
 main = ->
-    array = [4, 2, 9, 6, 23, 12] # test array
+    array = [4, 2, 9, 6, 23, 12] # test array with even length
+    #array = [4, 2, 9, 6, 23, 12, 1] # test array with odd length
     console.log "Before sort:" 
     printArray(array)
     console.log "After sort:"
