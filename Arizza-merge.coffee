@@ -82,7 +82,6 @@ printArray = (array) ->
 # purpose: run the program
 main = ->
     array = [4, 2, 9, 6, 23, 12] # test array
-    array = prompt("Enter list of integers:")
     console.log "Before sort:" 
     printArray(array)
     console.log "After sort:"
