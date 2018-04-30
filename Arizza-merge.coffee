@@ -20,10 +20,14 @@ sort = (array) ->
 #        lowerIndex, higherIndex (self-explanatory names)
 doMergeSort = (array, lowerIndex, higherIndex) ->
     if lowerIndex < higherIndex
-        middle = (lowerIndex + (higherIndex - lowerIndex)) / 2
+        middle = Math.round((lowerIndex + (higherIndex - 1)) / 2)
+        console.log "mid " + middle
         doMergeSort(array, lowerIndex, middle)
+        console.log "1 " + " " + lowerIndex + " " + middle
         doMergeSort(array, middle + 1, higherIndex)
+        console.log "2" + " " + (middle + 1) + " " + higherIndex
         mergeParts(array, lowerIndex, middle, higherIndex)
+        console.log "end"
 
 # purpose: merging together
 # input: array - array of integers
@@ -32,19 +36,25 @@ mergeParts = (array, lowerIndex, middle, higherIndex) ->
     n1 = middle - lowerIndex + 1
     n2 = higherIndex - middle
 
-    left = (0 for [1..n1])
-    right = (0 for [1..n2])
+    console.log "n1 " + n1
+    console.log "n2 " + n2
+
+    left = (0 for num in [0..n1])
+    console.log "left" + left
+    right = (0 for num in [0..n2])
+    console.log "right" + right
 
     # copy data to left[] and right[]
     i = 0
-    while i < n1
+    while i <= n1
         left[i] = array[lowerIndex + i]
         i++
-  
+    console.log "left" + left  
     j = 0
     while j < n2
         right[j] = array[middle + 1 + j]
-
+        j++
+    console.log "right" + right
     a = 0
     b = 0
     c = lowerIndex
@@ -57,7 +67,7 @@ mergeParts = (array, lowerIndex, middle, higherIndex) ->
             b++
         c++
 
-    # compy remaining elements
+    # copy remaining elements
     while a < n1
         array[c] = left[a]
         a++
