@@ -21,13 +21,9 @@ sort = (array) ->
 doMergeSort = (array, lowerIndex, higherIndex) ->
     if lowerIndex < higherIndex
         middle = Math.round((lowerIndex + (higherIndex - 1)) / 2)
-        console.log "mid " + middle
         doMergeSort(array, lowerIndex, middle)
-        console.log "1 " + " " + lowerIndex + " " + middle
         doMergeSort(array, middle + 1, higherIndex)
-        console.log "2" + " " + (middle + 1) + " " + higherIndex
         mergeParts(array, lowerIndex, middle, higherIndex)
-        console.log "end"
 
 # purpose: merging together
 # input: array - array of integers
@@ -36,25 +32,22 @@ mergeParts = (array, lowerIndex, middle, higherIndex) ->
     n1 = middle - lowerIndex + 1
     n2 = higherIndex - middle
 
-    console.log "n1 " + n1
-    console.log "n2 " + n2
-
+    # create temporary sub arrays
     left = (0 for num in [0..n1])
-    console.log "left" + left
     right = (0 for num in [0..n2])
-    console.log "right" + right
 
     # copy data to left[] and right[]
     i = 0
     while i <= n1
         left[i] = array[lowerIndex + i]
         i++
-    console.log "left" + left  
+  
     j = 0
     while j < n2
         right[j] = array[middle + 1 + j]
         j++
-    console.log "right" + right
+
+    # merging sub arrays into array
     a = 0
     b = 0
     c = lowerIndex
@@ -86,6 +79,7 @@ printArray = (array) ->
         string += " " + num
     console.log string
 
+# purpose: run the program
 main = ->
     array = [4, 2, 9, 6, 23, 12]
     console.log "Before sort:" 
@@ -106,5 +100,9 @@ sometimes it may get confusing; I kind of want some extra structure. For
 example, there is an option not to include parenthesis when invoking a function, 
 and you would also have to be careful of where your functions end. I also think
 the "for-loops" (really comprehensions) took some getting used to. I did resort
-to using a while-loop because I did not want to use a comprehension.   
+to using some while-loops because I did not want to use comprehensions.
+
+I got frustrated using this language. I knew I had the correct alogrithm for
+merge sort because we had done it in our past CS courses. I spent 1-2 hours
+trying to debug the code only to find out that there was an increment error.   
 ###
