@@ -16,41 +16,64 @@ sort = (array) ->
     doMergeSort(array, 0, array.length - 1)
 
 # purpose: recursively do merge sort
-# input: lowerIndex, higherIndex (self-explanatory names)
+# input: array - array of integers
+#        lowerIndex, higherIndex (self-explanatory names)
 doMergeSort = (array, lowerIndex, higherIndex) ->
     if lowerIndex < higherIndex
-        middle = lowerIndex + (higherIndex - lowerIndex) / 2
-        doMergeSort(lowerIndex, middle)
-        doMergeSort(middle + 1, higherIndex)
+        middle = (lowerIndex + (higherIndex - lowerIndex)) / 2
+        doMergeSort(array, lowerIndex, middle)
+        doMergeSort(array, middle + 1, higherIndex)
         mergeParts(array, lowerIndex, middle, higherIndex)
 
 # purpose: merging together
 # input: array - array of integers
 #        lowerIndex, middle, higherIndex
 mergeParts = (array, lowerIndex, middle, higherIndex) ->
-    tempMergeArray = (0 for array.length)
-    i = lowerIndex
-    while i <= higherIndex
-        tempMergeArray[i] = array[i]
-        i++
-    a = lowerIndex
-    b = middle + 1
-    c = lowerIndex
-    while a <= middle && b <= higherIndex
-        if tempMergeArray[a] <= tempMergeArray[b]
-            array[c++] = tempMergeArray[a++]
-        else
-            array[c++] = tempMergeArray[b++]
+    n1 = middle - lowerIndex + 1
+    n2 = higherIndex - middle
 
-    while a <= middle
-        array[c++] = tempMergeArray[a++]
+    left = (0 for [1..n1])
+    right = (0 for [1..n2])
+
+    # copy data to left[] and right[]
+    i = 0
+    while i < n1
+        left[i] = array[lowerIndex + i]
+        i++
+  
+    j = 0
+    while j < n2
+        right[j] = array[middle + 1 + j]
+
+    a = 0
+    b = 0
+    c = lowerIndex
+    while a < n1 && b < n2
+        if left[a] <= right[b]
+            array[c] = left[a]
+            a++
+        else
+            array[c] = right[b]
+            b++
+        c++
+
+    # compy remaining elements
+    while a < n1
+        array[c] = left[a]
+        a++
+        c++
+
+    while b < n2
+        array[c] = right[b]
+        b++
+        c++
 
 # purpose: print array of integers on one line
 # input: array - array of integers
 printArray = (array) ->
     string = "";
     for num in array
-        string += num
+        string += " " + num
     console.log string
 
 main = ->
